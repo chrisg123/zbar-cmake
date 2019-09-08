@@ -28,17 +28,7 @@ CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
 CHECK_INCLUDE_FILE(stdint.h HAVE_STDINT_H)
 CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
 
-
-
-
-
-
-
-set(HAVE_STDINT_H 1)
-
 configure_file(include/config.h.in include/config.h)
-
-
 
 set(SOURCE_FILES
     zbar/config.c    
