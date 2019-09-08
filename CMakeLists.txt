@@ -16,9 +16,19 @@ set(ZBAR_VERSION_MINOR 10)
 
 message(STATUS "Checking include files.")
 include(CheckIncludeFile)
+include(CheckIncludeFiles)
 
-set(HAVE_SYS_TYPES_H 0)
-check_include_file("sys/types.h" HAVE_SYS_TYPES_H)
+CHECK_INCLUDE_FILE(sys/types.h HAVE_SYS_TYPES_H)
+CHECK_INCLUDE_FILE(sys/stat.h HAVE_SYS_STAT_H)
+CHECK_INCLUDE_FILES(stdlib.h stddef.h HAVE_STDC_HEADERS)
+CHECK_INCLUDE_FILE(stdlib.h HAVE_STDLIB_H)
+CHECK_INCLUDE_FILE(string.h HAVE_STRING_H)
+CHECK_INCLUDE_FILE(strings.h HAVE_STRINGS_H)
+CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
+CHECK_INCLUDE_FILE(stdint.h HAVE_STDINT_H)
+CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
+
+
 
 
 
