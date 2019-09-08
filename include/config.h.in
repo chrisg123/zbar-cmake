@@ -172,8 +172,11 @@
 /* Define to 1 if the X Window System is missing or not being used. */
 #cmakedefine X_DISPLAY_MISSING @X_DISPLAY_MISSING@
 
-/* Program major version (before the '.') as a number */
-#cmakedefine ZBAR_VERSION_MAJOR @ZBAR_VERSION_MAJOR@
+/* Program major version (before the '.') as a number 
+   HACK: cmake's configure_file doesn't set 0 properly.
+   Using #cmakedefine01 as a hack.
+*/
+#cmakedefine01 ZBAR_VERSION_MAJOR @ZBAR_VERSION_MAJOR@
 
 /* Program minor version (after '.') as a number */
 #cmakedefine ZBAR_VERSION_MINOR @ZBAR_VERSION_MINOR@
