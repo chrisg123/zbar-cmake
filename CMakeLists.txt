@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(zbar)
 
-configure_file(config.h.in config.h)
+configure_file(include/config.h.in include/config.h)
 
 set(SOURCE_FILES
     zbar/config.c
@@ -10,7 +10,6 @@ set(SOURCE_FILES
     zbar/decoder
     zbar/decoder.c
     zbar/decoder.h
-    zbar/emacs
     zbar/error.c
     zbar/error.h
     zbar/event.h
