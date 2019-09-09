@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.7)
 project(zbar)
 
+if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+  message(FATAL_ERROR "In-source builds are not permitted. Make a separate \
+folder for building:\nmkdir build; cd build; cmake ..\nBefore that, remove the \
+files already created:\nrm -rf CMakeCache.txt CMakeFiles") 
+endif("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
 
 set(ENABLE_CODE128 1)
 set(ENABLE_CODE39 1)
@@ -8,10 +13,8 @@ set(ENABLE_EAN 1)
 set(ENABLE_I25 1)
 set(ENABLE_QRCODE 1)
 
-# cmake's configure_file doesn't set 0 properly.
-# Using #cmakedefine01 in config.h.in as a hack.
-#set(ZBAR_VERSION_MAJOR 0) 
 
+set(ZBAR_VERSION_MAJOR 0) 
 set(ZBAR_VERSION_MINOR 10)
 
 message(STATUS "Checking include files.")
@@ -28,24 +31,23 @@ CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
 CHECK_INCLUDE_FILE(stdint.h HAVE_STDINT_H)
 CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
 
-configure_file(include/config.h.in include/config.h)
+configure_file(${PROJECT_SOURCE_DIR}/include/config.h.in ${PROJECT_SOURCE_DIR}/include/config.h)
 
 set(SOURCE_FILES
-    zbar/config.c    
-
-    zbar/error.h
-    zbar/error.c
-    zbar/symbol.h
-    zbar/symbol.c
-    zbar/image.h
-    zbar/image.c
-    zbar/convert.c
-    zbar/refcnt.c
-    zbar/refcnt.h
-    zbar/mutex.h
-    zbar/thread.h
-    zbar/video.h
-    zbar/video.c
+    ${PROJECT_SOURCE_DIR}/zbar/config.c
+    ${PROJECT_SOURCE_DIR}/zbar/error.h
+    ${PROJECT_SOURCE_DIR}/zbar/error.c
+    ${PROJECT_SOURCE_DIR}/zbar/symbol.h
+    ${PROJECT_SOURCE_DIR}/zbar/symbol.c
+    ${PROJECT_SOURCE_DIR}/zbar/image.h
+    ${PROJECT_SOURCE_DIR}/zbar/image.c
+    ${PROJECT_SOURCE_DIR}/zbar/convert.c
+    ${PROJECT_SOURCE_DIR}/zbar/refcnt.c
+    ${PROJECT_SOURCE_DIR}/zbar/refcnt.h
+    ${PROJECT_SOURCE_DIR}/zbar/mutex.h
+    ${PROJECT_SOURCE_DIR}/zbar/thread.h
+    ${PROJECT_SOURCE_DIR}/zbar/video.h
+    ${PROJECT_SOURCE_DIR}/zbar/video.c
     # zbar/event.h
     # zbar/img_scanner.c
     # zbar/img_scanner.h
