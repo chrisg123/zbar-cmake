@@ -28,6 +28,79 @@ set(HAVE_X 0)
 #TODO: actually check for xv support
 set(HAVE_XV 0)
 
+set(INCLUDE_DIRS
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/zbar
+  )
+
+set(SOURCE_FILES
+  ${PROJECT_SOURCE_DIR}/zbar/config.c
+  ${PROJECT_SOURCE_DIR}/zbar/error.h
+  ${PROJECT_SOURCE_DIR}/zbar/error.c
+  ${PROJECT_SOURCE_DIR}/zbar/symbol.h
+  ${PROJECT_SOURCE_DIR}/zbar/symbol.c
+  ${PROJECT_SOURCE_DIR}/zbar/image.h
+  ${PROJECT_SOURCE_DIR}/zbar/image.c
+  ${PROJECT_SOURCE_DIR}/zbar/convert.c
+  ${PROJECT_SOURCE_DIR}/zbar/processor.h
+  ${PROJECT_SOURCE_DIR}/zbar/processor.c
+  ${PROJECT_SOURCE_DIR}/zbar/processor/lock.c
+  ${PROJECT_SOURCE_DIR}/zbar/refcnt.c
+  ${PROJECT_SOURCE_DIR}/zbar/refcnt.h
+  ${PROJECT_SOURCE_DIR}/zbar/timer.h
+  ${PROJECT_SOURCE_DIR}/zbar/mutex.h
+  ${PROJECT_SOURCE_DIR}/zbar/event.h
+  ${PROJECT_SOURCE_DIR}/zbar/thread.h
+  ${PROJECT_SOURCE_DIR}/zbar/window.h
+  ${PROJECT_SOURCE_DIR}/zbar/window.c
+  ${PROJECT_SOURCE_DIR}/zbar/video.h
+  ${PROJECT_SOURCE_DIR}/zbar/video.c
+  ${PROJECT_SOURCE_DIR}/zbar/img_scanner.c
+  ${PROJECT_SOURCE_DIR}/zbar/scanner.c
+  ${PROJECT_SOURCE_DIR}/zbar/decoder.h    
+  ${PROJECT_SOURCE_DIR}/zbar/decoder.c
+  )
+
+set(EXTRA_SOURCES
+  ${PROJECT_SOURCE_DIR}/zbar/svg.h
+  ${PROJECT_SOURCE_DIR}/zbar/svg.c  
+  )
+
+
+if(ANDROID)
+  message(STATUS, "CMAKE_ANDROID_ARCH_ABI=${CMAKE_ANDROID_ARCH_ABI}")
+  set(INCLUDE_DIRS
+    ${INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include
+    )
+  set(SOURCE_FILES
+    ${SOURCE_FILES}
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include/jconfig.h
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include/jerror.h
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include/jmorecfg.h
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include/jpeglib.h
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include/iconv.h
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include/libcharset.h
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include/localcharset.h    
+    )
+  set(LIB_FILES_STATIC
+    ${LIB_FILES_STATIC}
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libjpeg.a
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libiconv.a
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libcharset.a
+    )
+
+endif()
+
+include_directories(${INCLUDE_DIRS})
+
+message(STATUS "Include directories:")
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
 message(STATUS "Checking include files.")
 include(CheckIncludeFile)
 include(CheckIncludeFiles)
@@ -41,42 +114,11 @@ CHECK_INCLUDE_FILE(strings.h HAVE_STRINGS_H)
 CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
 CHECK_INCLUDE_FILE(stdint.h HAVE_STDINT_H)
 CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
+CHECK_INCLUDE_FILE(iconv.h HAVE_ICONV)
 CHECK_INCLUDE_FILE(jpeglib.h HAVE_JPEG)
 
 configure_file(${PROJECT_SOURCE_DIR}/include/config.h.in ${PROJECT_SOURCE_DIR}/include/config.h)
 
-set(SOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/zbar/config.c
-    ${PROJECT_SOURCE_DIR}/zbar/error.h
-    ${PROJECT_SOURCE_DIR}/zbar/error.c
-    ${PROJECT_SOURCE_DIR}/zbar/symbol.h
-    ${PROJECT_SOURCE_DIR}/zbar/symbol.c
-    ${PROJECT_SOURCE_DIR}/zbar/image.h
-    ${PROJECT_SOURCE_DIR}/zbar/image.c
-    ${PROJECT_SOURCE_DIR}/zbar/convert.c
-    ${PROJECT_SOURCE_DIR}/zbar/processor.h
-    ${PROJECT_SOURCE_DIR}/zbar/processor.c
-    ${PROJECT_SOURCE_DIR}/zbar/processor/lock.c
-    ${PROJECT_SOURCE_DIR}/zbar/refcnt.c
-    ${PROJECT_SOURCE_DIR}/zbar/refcnt.h
-    ${PROJECT_SOURCE_DIR}/zbar/timer.h
-    ${PROJECT_SOURCE_DIR}/zbar/mutex.h
-    ${PROJECT_SOURCE_DIR}/zbar/event.h
-    ${PROJECT_SOURCE_DIR}/zbar/thread.h
-    ${PROJECT_SOURCE_DIR}/zbar/window.h
-    ${PROJECT_SOURCE_DIR}/zbar/window.c
-    ${PROJECT_SOURCE_DIR}/zbar/video.h
-    ${PROJECT_SOURCE_DIR}/zbar/video.c
-    ${PROJECT_SOURCE_DIR}/zbar/img_scanner.c
-    ${PROJECT_SOURCE_DIR}/zbar/scanner.c
-    ${PROJECT_SOURCE_DIR}/zbar/decoder.h    
-    ${PROJECT_SOURCE_DIR}/zbar/decoder.c
-)
-
-set(EXTRA_SOURCES
-  ${PROJECT_SOURCE_DIR}/zbar/svg.h
-  ${PROJECT_SOURCE_DIR}/zbar/svg.c  
-  )
 
 message(STATUS "ENABLE_EAN=${ENABLE_EAN}")
 if(${ENABLE_EAN})
@@ -162,20 +204,20 @@ if(${HAVE_V4L1})
     ${SOURCE_FILES}
     ${PROJECT_SOURCE_DIR}/zbar/video/v4l1.c
     )
-message(STATUS "HAVE_V4L2=${HAVE_V4L2}")
-if(${HAVE_V4L2})
-  set(SOURCE_FILES
-    ${SOURCE_FILES}
-    ${PROJECT_SOURCE_DIR}/zbar/video/v4l2.c
-    )
-endif()
+  message(STATUS "HAVE_V4L2=${HAVE_V4L2}")
+  if(${HAVE_V4L2})
+    set(SOURCE_FILES
+      ${SOURCE_FILES}
+      ${PROJECT_SOURCE_DIR}/zbar/video/v4l2.c
+      )
+  endif()
 endif()
 
 message(STATUS "WIN32=${WIN32}")
 if(${WIN32})
-if(${HAVE_VIDEO})
-   message(STATUS "TODO: WIN32 HAVE_VIDEO NOT IMPLEMENTED IN CMAKE")
-endif()
+  if(${HAVE_VIDEO})
+    message(STATUS "TODO: WIN32 HAVE_VIDEO NOT IMPLEMENTED IN CMAKE")
+  endif()
 endif()
 
 message(STATUS "HAVE_VIDEO=${HAVE_VIDEO}")
@@ -201,14 +243,14 @@ if(${HAVE_X})
     #${PROJECT_SOURCE_DIR}/zbar/jpeg.c
     #TODO
     )
-message(STATUS "HAVE_XV=${HAVE_XV}")
-if(${HAVE_XV})
-  set(SOURCE_FILES
-    ${SOURCE_FILES}
-    #${PROJECT_SOURCE_DIR}/zbar/jpeg.c
-    #TODO
-    )
-endif()
+  message(STATUS "HAVE_XV=${HAVE_XV}")
+  if(${HAVE_XV})
+    set(SOURCE_FILES
+      ${SOURCE_FILES}
+      #${PROJECT_SOURCE_DIR}/zbar/jpeg.c
+      #TODO
+      )
+  endif()
 
 elseif(${WIN32})
   message(STATUS "TODO: WIN32 WINDOW SYTEM NOT IMPLEMENTED IN CMAKE")
@@ -220,9 +262,5 @@ else()
     )  
 endif()
 
-include_directories(./include ./zbar)
-
 add_library(zbar SHARED ${SOURCE_FILES})
-
-
-
+target_link_libraries(zbar STATIC ${LIB_STATIC})

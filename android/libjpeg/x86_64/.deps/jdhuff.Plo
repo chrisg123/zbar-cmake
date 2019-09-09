@@ -1,0 +1,130 @@
+jdhuff.lo: /home/cgouveia/jpeg-9c/jdhuff.c \
+  /home/cgouveia/jpeg-9c/jinclude.h jconfig.h \
+  /home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stddef.h \
+  /home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/__stddef_max_align_t.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/local/include/stdlib.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdlib.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/alloca.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/sys/cdefs.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/versioning.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/api-level.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/get_device_api_level_inlines.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/wait.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/wait.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/malloc.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdio.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/sys/types.h \
+  /home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stdint.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdint.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/wchar_limits.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/int-ll64.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/bitsperlong.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/bitsperlong.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/posix_types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/stddef.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/compiler_types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/compiler.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/posix_types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/posix_types_64.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/posix_types.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/pthread_types.h \
+  /home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stdarg.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/seek_constants.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/struct_file.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/xlocale.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/legacy_stdlib_inlines.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/string.h \
+  /home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/strcasecmp.h \
+  /home/cgouveia/jpeg-9c/jpeglib.h /home/cgouveia/jpeg-9c/jmorecfg.h \
+  /home/cgouveia/jpeg-9c/jpegint.h /home/cgouveia/jpeg-9c/jerror.h
+
+/home/cgouveia/jpeg-9c/jinclude.h:
+
+jconfig.h:
+
+/home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stddef.h:
+
+/home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/__stddef_max_align_t.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/local/include/stdlib.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdlib.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/alloca.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/sys/cdefs.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/versioning.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/api-level.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/get_device_api_level_inlines.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/wait.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/wait.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/malloc.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdio.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/sys/types.h:
+
+/home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stdint.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/stdint.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/wchar_limits.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/int-ll64.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/bitsperlong.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/bitsperlong.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/posix_types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/stddef.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/compiler_types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/linux/compiler.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/posix_types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/x86_64-linux-android/asm/posix_types_64.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/asm-generic/posix_types.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/pthread_types.h:
+
+/home/cgouveia/android-ndk-r20/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include/stdarg.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/seek_constants.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/struct_file.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/xlocale.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/android/legacy_stdlib_inlines.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/string.h:
+
+/home/cgouveia/android-ndk-r20//toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/include/bits/strcasecmp.h:
+
+/home/cgouveia/jpeg-9c/jpeglib.h:
+
+/home/cgouveia/jpeg-9c/jmorecfg.h:
+
+/home/cgouveia/jpeg-9c/jpegint.h:
+
+/home/cgouveia/jpeg-9c/jerror.h:
