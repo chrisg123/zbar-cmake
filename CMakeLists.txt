@@ -68,7 +68,7 @@ set(EXTRA_SOURCES
 
 
 if(ANDROID)
-  message(STATUS, "CMAKE_ANDROID_ARCH_ABI=${CMAKE_ANDROID_ARCH_ABI}")
+  message(STATUS "CMAKE_ANDROID_ARCH_ABI=${CMAKE_ANDROID_ARCH_ABI}")
   set(INCLUDE_DIRS
     ${INCLUDE_DIRS}
     ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/include
@@ -263,4 +263,12 @@ else()
 endif()
 
 add_library(zbar SHARED ${SOURCE_FILES})
-target_link_libraries(zbar STATIC ${LIB_STATIC})
+
+message(STATUS "Target link libraries:")
+foreach(file ${LIB_FILES_STATIC})
+  message(STATUS "file='${file}'")
+endforeach()
+
+target_link_libraries(zbar ${LIB_FILES_STATIC})
+
+
