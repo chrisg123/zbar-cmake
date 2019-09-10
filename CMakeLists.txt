@@ -34,6 +34,7 @@ set(INCLUDE_DIRS
   )
 
 set(SOURCE_FILES
+  ${PROJECT_SOURCE_DIR}/include/zbar.h
   ${PROJECT_SOURCE_DIR}/zbar/config.c
   ${PROJECT_SOURCE_DIR}/zbar/error.h
   ${PROJECT_SOURCE_DIR}/zbar/error.c
@@ -84,13 +85,25 @@ if(ANDROID)
     ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include/libcharset.h
     ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/include/localcharset.h    
     )
-  set(LIB_FILES_STATIC
-    ${LIB_FILES_STATIC}
-    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libjpeg.a
-    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libiconv.a
-    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libcharset.a
-    )
 
+  add_library(libiconv STATIC IMPORTED)
+  set_target_properties(libiconv PROPERTIES IMPORTED_LOCATION
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libiconv.a)
+
+  add_library(libcharset STATIC IMPORTED)
+  set_target_properties(libcharset PROPERTIES IMPORTED_LOCATION
+    ${PROJECT_SOURCE_DIR}/android/libiconv/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libcharset.a)
+  
+  add_library(libjpeg STATIC IMPORTED)
+  set_target_properties(libjpeg PROPERTIES IMPORTED_LOCATION
+    ${PROJECT_SOURCE_DIR}/android/libjpeg/${CMAKE_ANDROID_ARCH_ABI}/install/lib/libjpeg.a)
+  
+  set(HAVE_ICONV 1)  
+  set(HAVE_LIBJPEG 1)  
+  set(HAVE_JPEG 1)
+
+  set(STATIC_LIBS libiconv libcharset libjpeg)
+  
 endif()
 
 include_directories(${INCLUDE_DIRS})
@@ -114,8 +127,12 @@ CHECK_INCLUDE_FILE(strings.h HAVE_STRINGS_H)
 CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
 CHECK_INCLUDE_FILE(stdint.h HAVE_STDINT_H)
 CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
-CHECK_INCLUDE_FILE(iconv.h HAVE_ICONV)
-CHECK_INCLUDE_FILE(jpeglib.h HAVE_JPEG)
+CHECK_INCLUDE_FILE(poll.h HAVE_POLL_H)
+
+
+#TODO
+#CHECK_INCLUDE_FILE(iconv.h HAVE_ICONV)
+#CHECK_INCLUDE_FILE(jpeglib.h HAVE_JPEG)
 
 configure_file(${PROJECT_SOURCE_DIR}/include/config.h.in ${PROJECT_SOURCE_DIR}/include/config.h)
 
@@ -190,11 +207,11 @@ endif()
 
 if(${WIN32})
   message(STATUS "TODO: WIN32 NOT IMPLEMENTED IN CMAKE")
-elseif()
+else()
   set(SOURCE_FILES
     ${SOURCE_FILES}
     ${PROJECT_SOURCE_DIR}/zbar/processor/posix.h
-    ${PROJECT_SOURCE_DIR}/zbar/decoder/posix.c
+    ${PROJECT_SOURCE_DIR}/zbar/processor/posix.c
     )
 endif()
 
@@ -256,19 +273,23 @@ elseif(${WIN32})
   message(STATUS "TODO: WIN32 WINDOW SYTEM NOT IMPLEMENTED IN CMAKE")
   
 else()
+    message(STATUS "processor/null.c and window/null.c added to source files.")
   set(SOURCE_FILES
     ${SOURCE_FILES}
+    ${PROJECT_SOURCE_DIR}/zbar/processor/null.c
     ${PROJECT_SOURCE_DIR}/zbar/window/null.c
     )  
 endif()
 
-add_library(zbar SHARED ${SOURCE_FILES})
-
-message(STATUS "Target link libraries:")
-foreach(file ${LIB_FILES_STATIC})
+message(STATUS "Source files:")
+foreach(file ${SOURCE_FILES})
   message(STATUS "file='${file}'")
 endforeach()
 
-target_link_libraries(zbar ${LIB_FILES_STATIC})
+
+add_library(zbar SHARED ${SOURCE_FILES})
+
+target_link_libraries(zbar ${STATIC_LIBS})
 
 
+message(STATUS "CMAKE_SHARED_LINKER_FLAGS=${CMAKE_SHARED_LINKER_FLAGS}")
